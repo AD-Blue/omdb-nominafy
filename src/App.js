@@ -12,7 +12,7 @@ function App() {
     let url = "http://www.omdbapi.com/?apikey=16ee612e&"
 
     const handleSearch = (event) => {
-        search = event.target.value;
+        search = event.target.value.toLowerCase();
 
         console.log(search.substring(0, 2))
         console.log(`You entered ${search}`)
