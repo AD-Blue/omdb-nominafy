@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text, Button } from '@chakra-ui/react';
+import { Flex, Text, Button, Spinner } from '@chakra-ui/react';
 import { useAxiosGet } from '../Utility/HttpRequest';
 import { useSelector, useDispatch } from 'react-redux';
 import { nominate, denominate } from '../Redux/nominateSlice';
@@ -44,7 +44,7 @@ export default function MovieCard({ url }) {
         </Button>
     }
 
-    if(movie.data.Response === "True") {
+    if(movie.data.Response === 'True' && movie.loading === false) {
         content = 
         <Flex border='solid' borderWidth='1px' mt='10%' ml='auto' mr='auto' w='85%' p='3%' direction='column'>
             <Text fontSize='32px'>{movie.data.Title}</Text>
@@ -54,10 +54,16 @@ export default function MovieCard({ url }) {
             {button}
         </Flex>
     }
-    else {
+    else if(movie.data.Response === 'False') {
         content = 
         <Flex mt='10%' ml='auto' mr='auto' w='80%'>
             <Text>Sorry, could not find any matches. Try using the IMDb ID or double-checking your spacing/spelling</Text>
+        </Flex>
+    }
+    else {
+        content = 
+        <Flex mt='10%' ml='auto' mr='auto' w='80%' justify='center' align='center'>
+            <Spinner />
         </Flex>
     }
 

@@ -20,8 +20,6 @@ export default function NominationList() {
 
     let label = "Check your nominations";
 
-    let open = false;
-
     const nominees = useSelector((state) => state.nominate.nominees);
     const dispatch = useDispatch();
 
@@ -35,7 +33,7 @@ export default function NominationList() {
 
     return (
         <>
-            <Tooltip hasArrow label={label} isOpen={open}>
+            <Tooltip hasArrow label={label}>
                 <Button size='xs' ref={btnRef} colorScheme="teal" onClick={onOpen} variant='outline' p='8px'>{nominees.length}</Button>
             </Tooltip>
             
