@@ -8,7 +8,7 @@ import {
     DrawerContent,
     DrawerCloseButton,
     useDisclosure, Button,
-    Text, IconButton, Flex
+    Text, IconButton, Flex, Tooltip
 } from "@chakra-ui/react";
 import { SmallCloseIcon } from '@chakra-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,6 +17,10 @@ import { clear, denominate } from '../Redux/nominateSlice';
 export default function NominationList() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
+
+    let label = "Check your nominations";
+
+    let open = false;
 
     const nominees = useSelector((state) => state.nominate.nominees);
     const dispatch = useDispatch();
@@ -31,7 +35,10 @@ export default function NominationList() {
 
     return (
         <>
-            <Button size='xs' ref={btnRef} colorScheme="teal" onClick={onOpen} variant='outline' p='8px'>{nominees.length}</Button>
+            <Tooltip hasArrow label={label} isOpen={open}>
+                <Button size='xs' ref={btnRef} colorScheme="teal" onClick={onOpen} variant='outline' p='8px'>{nominees.length}</Button>
+            </Tooltip>
+            
             <Drawer
                 isOpen={isOpen}
                 placement="left"

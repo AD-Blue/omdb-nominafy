@@ -26,10 +26,6 @@ function App() {
         setContent(<MovieCard url={url} />)
     }
 
-    const test = () => {
-        console.log(`url to search: ${url}`)
-    }
-
     return (
         <Flex direction='column'>
             <Nav />

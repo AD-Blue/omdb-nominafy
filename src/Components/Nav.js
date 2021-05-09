@@ -8,7 +8,7 @@ export default function Nav() {
     return (
         <Flex w='100%' h='50px' bg='#c24d2c' align='center' justify='space-between' pl='3%' pr='3%'>
             <Flex align='center'>
-                <Text mr='3%'>Nominafy</Text>
+                <Text mr='20px' color='#81e6d9'>Nominafy</Text>
                 <NominationList />
             </Flex>
 
