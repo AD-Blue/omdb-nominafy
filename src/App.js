@@ -9,7 +9,7 @@ function App() {
     const [content, setContent] = useState(null)
     const [search, setSearch] = useState("");
 
-    let url = "http://www.omdbapi.com/?apikey=16ee612e&"
+    let url = "https://www.omdbapi.com/?apikey=16ee612e&"
 
     const handleSearch = (event) => {
         setSearch(event.target.value.toLowerCase());
@@ -17,10 +17,10 @@ function App() {
 
     const handleSubmit = () => {
         if(search.substring(0, 2) === 'tt') {
-            url = 'http://www.omdbapi.com/?apikey=16ee612e&i=' + search
+            url = 'https://www.omdbapi.com/?apikey=16ee612e&i=' + search
         }
         else {
-            url = 'http://www.omdbapi.com/?apikey=16ee612e&t=' + search.replaceAll(' ', '+')
+            url = 'https://www.omdbapi.com/?apikey=16ee612e&t=' + search.replaceAll(' ', '+')
         }
 
         setContent(<MovieCard url={url} />)
