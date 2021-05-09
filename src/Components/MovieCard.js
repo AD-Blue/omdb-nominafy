@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, Text, Button } from '@chakra-ui/react';
 import { useAxiosGet } from '../Utility/HttpRequest';
 import { useSelector, useDispatch } from 'react-redux';
-import { nominate } from '../Redux/nominateSlice';
+import { nominate, denominate } from '../Redux/nominateSlice';
 
 export default function MovieCard({ url }) {
     const nominees = useSelector((state) => state.nominate.nominees)
@@ -11,13 +11,38 @@ export default function MovieCard({ url }) {
     let movie = useAxiosGet(url);
 
     let content = null;
+    let button = null;
 
     const handleNominate = () => {
         dispatch(nominate(movie))
         console.log(nominees)
     }
 
+    const handleDenominate = () => {
+        dispatch(denominate(movie))
+        console.log('Denominate attempted')
+    }
+
     console.log(movie)
+
+    if (nominees.includes(movie)) {
+        button =
+        <Button colorScheme="pink" variant="outline" onClick={handleDenominate}>
+            Remove From Your Nominations
+        </Button>
+    }
+    else if (!nominees.includes(movie) && nominees.length < 5) {
+        button =
+        <Button colorScheme="teal" variant="outline" onClick={handleNominate}>
+            Nominate
+        </Button>
+    }
+    else {
+        button =
+        <Button isDisabled={true} colorScheme="teal" variant="outline" onClick={handleNominate}>
+            Your nomination list is full! (5/5)
+        </Button>
+    }
 
     if(movie.data.Response === "True") {
         content = 
@@ -26,9 +51,7 @@ export default function MovieCard({ url }) {
             <Text mt='1%' mb='1%'>{movie.data.Year}</Text>
             <Text fontSize='21px' mb='3%'>{movie.data.Plot}</Text>
 
-            <Button colorScheme="teal" variant="outline" onClick={handleNominate}>
-                Nominate
-            </Button>
+            {button}
         </Flex>
     }
     else {

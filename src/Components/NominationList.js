@@ -8,10 +8,11 @@ import {
     DrawerContent,
     DrawerCloseButton,
     useDisclosure, Button,
-    Text
+    Text, IconButton, Flex
 } from "@chakra-ui/react";
+import { SmallCloseIcon } from '@chakra-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { clear } from '../Redux/nominateSlice';
+import { clear, denominate } from '../Redux/nominateSlice';
 
 export default function NominationList() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -22,6 +23,10 @@ export default function NominationList() {
 
     const handleClear = () => {
         dispatch(clear());
+    }
+
+    const handleDenominate = (movie) => {
+        dispatch(denominate(movie))
     }
 
     return (
@@ -40,7 +45,16 @@ export default function NominationList() {
 
                 <DrawerBody>
                     {nominees.slice().map((nominee) => (
-                        <Text>{nominee.data.Title}</Text>
+                        <Flex direction='row' justify='space-between' align='center'>
+                            <Text>{nominee.data.Title}</Text>
+                            <IconButton 
+                                size='xs' aria-label="Remove nomination" 
+                                icon={<SmallCloseIcon w={4} h={4} />}
+                                onClick={() => {
+                                    handleDenominate(nominee)
+                                }} 
+                            />
+                        </Flex>
                     ))}
                 </DrawerBody>
 

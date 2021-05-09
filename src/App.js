@@ -3,24 +3,16 @@ import './App.css';
 import MovieCard from './Components/MovieCard';
 import React, { useState } from 'react';
 import Nav from './Components/Nav';
-import NominationList from './Components/NominationList';
-import { useSelector } from 'react-redux';
 
 
 function App() {
     const [content, setContent] = useState(null)
-
-    let search = "";
-
-    const nominees = useSelector((state) => state.nominate.nominees);
+    const [search, setSearch] = useState("");
 
     let url = "http://www.omdbapi.com/?apikey=16ee612e&"
 
     const handleSearch = (event) => {
-        search = event.target.value.toLowerCase();
-
-        console.log(search.substring(0, 2))
-        console.log(`You entered ${search}`)
+        setSearch(event.target.value.toLowerCase());
     }
 
     const handleSubmit = () => {
@@ -31,13 +23,11 @@ function App() {
             url = 'http://www.omdbapi.com/?apikey=16ee612e&t=' + search.replaceAll(' ', '+')
         }
 
-        console.log(`URL to search is ${url}`)
-
         setContent(<MovieCard url={url} />)
     }
 
     const test = () => {
-        console.log(nominees)
+        console.log(`url to search: ${url}`)
     }
 
     return (
@@ -48,8 +38,6 @@ function App() {
             <Button onClick={handleSubmit} mt='3%' mr='auto' ml='auto' colorScheme='teal' variant='outline'>Search</Button>
 
             {content}
-
-            <Button onClick={test}>Test</Button>
         </Flex>
     );
 }
