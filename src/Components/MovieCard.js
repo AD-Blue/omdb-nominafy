@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Flex, Text, Button } from '@chakra-ui/react';
 import { useAxiosGet } from '../Utility/HttpRequest';
+import { useSelector, useDispatch } from 'react-redux';
+import { nominate } from '../Redux/nominateSlice';
 
-export default function MovieCard({ props }) {
+export default function MovieCard({ url }) {
+    const nominees = useSelector((state) => state.nominate.nominees)
+    const dispatch = useDispatch();
 
-    let movie = useAxiosGet(props.url);
+    let movie = useAxiosGet(url);
 
     let content = null;
 
     const handleNominate = () => {
-        props.nominees.push(movie);
-        console.log(props.nominees)
+        dispatch(nominate(movie))
+        console.log(nominees)
     }
 
     console.log(movie)

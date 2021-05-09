@@ -9,15 +9,19 @@ import {
     DrawerCloseButton,
     useDisclosure, Button,
     Text
-  } from "@chakra-ui/react"
+} from "@chakra-ui/react";
+import { useSelector, useDispatch } from 'react-redux';
+import { clear } from '../Redux/nominateSlice';
 
-export default function NominationList({ nominees }) {
+export default function NominationList() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
 
+    const nominees = useSelector((state) => state.nominate.nominees);
+    const dispatch = useDispatch();
+
     const handleClear = () => {
-        nominees.splice(0, nominees.length);
-        onClose();
+        dispatch(clear());
     }
 
     return (

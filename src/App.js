@@ -4,15 +4,15 @@ import MovieCard from './Components/MovieCard';
 import React, { useState } from 'react';
 import Nav from './Components/Nav';
 import NominationList from './Components/NominationList';
+import { useSelector } from 'react-redux';
 
 
 function App() {
     const [content, setContent] = useState(null)
-    
 
     let search = "";
 
-    let nominees = [];
+    const nominees = useSelector((state) => state.nominate.nominees);
 
     let url = "http://www.omdbapi.com/?apikey=16ee612e&"
 
@@ -33,12 +33,7 @@ function App() {
 
         console.log(`URL to search is ${url}`)
 
-        let props = {
-            url,
-            nominees
-        }
-
-        setContent(<MovieCard props={props} />)
+        setContent(<MovieCard url={url} />)
     }
 
     const test = () => {
@@ -47,7 +42,7 @@ function App() {
 
     return (
         <Flex direction='column'>
-            <Nav nominees={nominees} />
+            <Nav />
 
             <Input placeholder="Search by full movie title or IMDb ID" w='80%' ml='auto' mr='auto' mt='5%' p='1%' onChange={handleSearch} />
             <Button onClick={handleSubmit} mt='3%' mr='auto' ml='auto' colorScheme='teal' variant='outline'>Search</Button>
