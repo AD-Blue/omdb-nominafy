@@ -1,14 +1,18 @@
-import { Flex, Text, Input, Button, useColorMode } from '@chakra-ui/react';
+import { Flex, Input, Button } from '@chakra-ui/react';
 import './App.css';
 import MovieCard from './Components/MovieCard';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Nav from './Components/Nav';
+import NominationList from './Components/NominationList';
 
 
 function App() {
     const [content, setContent] = useState(null)
-    const { colorMode, toggleColorMode } = useColorMode();
+    
 
     let search = "";
+
+    let nominees = [];
 
     let url = "http://www.omdbapi.com/?apikey=16ee612e&"
 
@@ -29,20 +33,28 @@ function App() {
 
         console.log(`URL to search is ${url}`)
 
-        setContent(<MovieCard url={url} />)
+        let props = {
+            url,
+            nominees
+        }
+
+        setContent(<MovieCard props={props} />)
+    }
+
+    const test = () => {
+        console.log(nominees)
     }
 
     return (
         <Flex direction='column'>
-            <Flex w='100%' h='50px' bg='#c24d2c' align='center' justify='space-between' pl='3%' pr='3%'>
-                <Text>Nominafy</Text>
-                <Button colorScheme='teal' variant='outline' onClick={toggleColorMode} size='s' p='8px'>{colorMode === 'dark' ? 'Light Mode' : 'Dark Mode'}</Button>
-            </Flex>
+            <Nav nominees={nominees} />
 
             <Input placeholder="Search by full movie title or IMDb ID" w='80%' ml='auto' mr='auto' mt='5%' p='1%' onChange={handleSearch} />
             <Button onClick={handleSubmit} mt='3%' mr='auto' ml='auto' colorScheme='teal' variant='outline'>Search</Button>
 
             {content}
+
+            <Button onClick={test}>Test</Button>
         </Flex>
     );
 }
