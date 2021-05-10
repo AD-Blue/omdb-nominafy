@@ -30,7 +30,9 @@ function App() {
         setSearch(event.target.value.toLowerCase());
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log('Submitted')
         if(search.substring(0, 2) === 'tt') {
             url = 'https://www.omdbapi.com/?apikey=16ee612e&i=' + search
             setContent(<MovieCard url={url} />)
@@ -43,13 +45,6 @@ function App() {
         }        
     }
 
-    const handleKeypress = e => {
-        //it triggers by pressing the enter key
-      if (e.keyCode === 13) {
-        handleSubmit();
-      }
-    };
-
     return (
         <Flex direction='column'>
             <Nav />
@@ -57,11 +52,15 @@ function App() {
                 <Banner />
             )}
 
-            <Heading as='h1' textAlign='center' mt='100px' fontSize='68px' color='#fbd38d'>The <br />Shoppies</Heading>
-            <Text textAlign='center' mt='40px'>Nominate Your Favorite Movies</Text>
+            <Heading as='h1' textAlign='center' mt='100px' fontSize={['54px', '68px']} color='#fbd38d'>The <br />Shoppies</Heading>
+            <Text textAlign='center' mt='40px' fontSize='24px'>Nominate Your Favorite Movies</Text>
 
-            <Input placeholder="Search by full movie title or IMDb ID" w='80%' ml='auto' mr='auto' mt='5%' p='1%' onChange={handleSearch} onKeyPress={handleKeypress} />
-            <Button onClick={handleSubmit} mt='3%' mr='auto' ml='auto' colorScheme='orange' variant='outline'>Search</Button>
+            <form onSubmit={handleSubmit}>
+                <Flex direction='column'>
+                    <Input placeholder="Search by full movie title or IMDb ID" w='80%' ml='auto' mr='auto' mt='5%' p='1%' onChange={handleSearch} />
+                    <Button onClick={handleSubmit} mt='3%' mr='auto' ml='auto' colorScheme='orange' variant='outline'>Search</Button>
+                </Flex>
+            </form>
 
             {content}
         </Flex>
