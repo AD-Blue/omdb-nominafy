@@ -30,19 +30,19 @@ export default function MovieListing({ movie }) {
 
     if (nominees.filter(nominee => nominee.imdbID === newMovie.imdbID).length > 0) {
         button =
-        <Button w='70%' colorScheme="pink" variant="outline" onClick={handleDenominate}>
-            Remove From Your Nominations
+        <Button w='95%' colorScheme="pink" variant="outline" onClick={handleDenominate}>
+            Remove From Nominations
         </Button>
     }
     else if (nominees.filter(nominee => nominee.imdbID === newMovie.imdbID).length === 0 && nominees.length < 5) {
         button =
-        <Button w='70%' colorScheme="orange" variant="outline" onClick={handleNominate}>
+        <Button w='95%' colorScheme="orange" variant="outline" onClick={handleNominate}>
             Nominate
         </Button>
     }
     else {
         button =
-        <Button w='70%' isDisabled={true} colorScheme="orange" variant="outline" onClick={handleNominate}>
+        <Button w='95%' isDisabled={true} colorScheme="orange" variant="outline" onClick={handleNominate}>
             Your nomination list is full! (5/5)
         </Button>
     }
