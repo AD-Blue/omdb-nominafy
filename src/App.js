@@ -59,7 +59,7 @@ function App() {
             )}
 
             <Heading as='h1' textAlign='center' mt='120px' fontSize={['54px', '68px']} color={textColor}>The <br />Shoppies</Heading>
-            <Text textAlign='center' mt='40px' fontSize='24px'>Nominate Your Favorite Movies</Text>
+            <Text textAlign='center' mt='40px' fontSize='24px'>Nominate Your Five Favorite Movies</Text>
 
             <form onSubmit={handleSubmit}>
                 <Flex direction='column'>
