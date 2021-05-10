@@ -1,10 +1,11 @@
-import { Flex, Input, Button } from '@chakra-ui/react';
+import { Flex, Input, Button, UnorderedList } from '@chakra-ui/react';
 import './App.css';
 import MovieCard from './Components/MovieCard';
 import React, { useState, useEffect } from 'react';
 import Nav from './Components/Nav';
 import Banner from './Components/Banner';
 import { useSelector } from 'react-redux';
+import MovieList from './Components/MovieList';
 
 function App() {
     const [content, setContent] = useState(null)
@@ -32,12 +33,17 @@ function App() {
     const handleSubmit = () => {
         if(search.substring(0, 2) === 'tt') {
             url = 'https://www.omdbapi.com/?apikey=16ee612e&i=' + search
+            setContent(<MovieCard url={url} />)
         }
         else {
-            url = 'https://www.omdbapi.com/?apikey=16ee612e&t=' + search.replaceAll(' ', '+')
+            url = 'https://www.omdbapi.com/?apikey=16ee612e&s=' + search.replaceAll(' ', '+')
+            setContent(
+                <MovieList url={url} />
+            )
+            console.log(`URL: ${url}`)
         }
 
-        setContent(<MovieCard url={url} />)
+        
     }
 
     return (
