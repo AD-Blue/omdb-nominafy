@@ -35,11 +35,11 @@ function App() {
         e.preventDefault();
         console.log('Submitted')
         if(search.substring(0, 2) === 'tt') {
-            url = 'https://www.omdbapi.com/?apikey=16ee612e&i=' + search
+            url = 'https://www.omdbapi.com/?apikey=16ee612e&type=movie&i=' + search
             setContent(<MovieCard url={url} />)
         }
         else {
-            url = 'https://www.omdbapi.com/?apikey=16ee612e&s=' + search.replaceAll(' ', '+')
+            url = 'https://www.omdbapi.com/?apikey=16ee612e&type=movie&s=' + search.replaceAll(' ', '+')
             setContent(
                 <MovieList url={url} />
             )
