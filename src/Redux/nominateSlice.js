@@ -8,13 +8,31 @@ export const nominateSlice = createSlice({
     },
     reducers: {
         nominate: (state, action) => {
-            state.nominees.push(action.payload)
+            let newMovie = {
+                Title: action.payload.Title,
+                Year: action.payload.Year,
+                Poster: action.payload.Poster,
+                imdbID: action.payload.imdbID
+            }
+            state.nominees.push(newMovie)
         },
         denominate: (state, action) => {
-            const index = state.nominees.indexOf(action.payload);
+            /* let newMovie = {
+                Title: action.payload.Title,
+                Year: action.payload.Year,
+                Poster: action.payload.Poster
+            }
+            console.log(`Nominee list: ${state.nominees}`)
+
+            const index = state.nominees.indexOf(newMovie);
+
             console.log(action.payload)
             console.log(`Index of movie: ${index}`)
-            state.nominees.splice(index, 1)
+            console.log(`Movie at index ${1}: ${JSON.stringify(state.nominees[1])}`)
+            state.nominees.splice(index, 1) */
+            state.nominees = state.nominees.filter((movie) => {
+                return movie.imdbID !== action.payload.imdbID;
+            })
         },
         clear: (state) => {
             state.nominees.splice(0, state.nominees.length);

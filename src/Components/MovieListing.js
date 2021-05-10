@@ -8,36 +8,41 @@ export default function MovieListing({ movie }) {
     const nominees = useSelector((state) => state.nominate.nominees)
     const dispatch = useDispatch();
 
+    let newMovie = {
+        Title: movie.Title,
+        Year: movie.Year,
+        Poster: movie.Poster,
+        imdbID: movie.imdbID
+    }
+
     let content = null;
     let button = null;
 
     const handleNominate = () => {
-        dispatch(nominate(movie))
+        dispatch(nominate(newMovie))
         console.log(nominees)
     }
 
     const handleDenominate = () => {
-        dispatch(denominate(movie))
+        dispatch(denominate(newMovie))
         console.log('Denominate attempted')
     }
 
-    console.log(movie)
-
-    if (nominees.includes(movie)) {
+    if (nominees.filter(nominee => nominee.imdbID === newMovie.imdbID).length > 0) {
         button =
-        <Button w='40%' colorScheme="pink" variant="outline" onClick={handleDenominate}>
+        <Button w='70%' colorScheme="pink" variant="outline" onClick={handleDenominate}>
             Remove From Your Nominations
         </Button>
     }
-    else if (!nominees.includes(movie) && nominees.length < 5) {
+    else if (nominees.filter(nominee => nominee.imdbID === newMovie.imdbID).length === 0 && nominees.length < 5) {
         button =
-        <Button w='40%' colorScheme="teal" variant="outline" onClick={handleNominate}>
+        <Button w='70%' colorScheme="teal" variant="outline" onClick={handleNominate}>
             Nominate
         </Button>
     }
     else {
         button =
-        <Button w='40%' isDisabled={true} colorScheme="teal" variant="outline" onClick={handleNominate}>
+        <Button w='70%' isDisabled={true} colorScheme="teal" variant="outline" onClick={handleNominate}>
             Your nomination list is full! (5/5)
         </Button>
     }

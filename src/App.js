@@ -1,4 +1,4 @@
-import { Flex, Input, Button, UnorderedList } from '@chakra-ui/react';
+import { Flex, Input, Button, Heading, Text } from '@chakra-ui/react';
 import './App.css';
 import MovieCard from './Components/MovieCard';
 import React, { useState, useEffect } from 'react';
@@ -40,7 +40,6 @@ function App() {
             setContent(
                 <MovieList url={url} />
             )
-            console.log(`URL: ${url}`)
         }
 
         
@@ -53,8 +52,11 @@ function App() {
                 <Banner />
             )}
 
+            <Heading as='h1' textAlign='center' mt='3%' fontSize='68px' color='#fbd38d'>The <br />Shoppies</Heading>
+            <Text textAlign='center' mt='40px'>Nominate Your Favorite Movies</Text>
+
             <Input placeholder="Search by full movie title or IMDb ID" w='80%' ml='auto' mr='auto' mt='5%' p='1%' onChange={handleSearch} />
-            <Button onClick={handleSubmit} mt='3%' mr='auto' ml='auto' colorScheme='teal' variant='outline'>Search</Button>
+            <Button onClick={handleSubmit} mt='3%' mr='auto' ml='auto' colorScheme='orange' variant='outline'>Search</Button>
 
             {content}
         </Flex>

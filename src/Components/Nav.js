@@ -6,7 +6,7 @@ export default function Nav() {
     const { colorMode, toggleColorMode } = useColorMode();
 
     return (
-        <Flex w='100%' h='50px' bg='#c24d2c' align='center' justify='space-between' pl='3%' pr='3%'>
+        <Flex w='100%' h='50px' bg='brand.200' align='center' justify='space-between' pl='3%' pr='3%' position='fixed' zIndex='3'>
             <Flex align='center'>
                 <Text mr='20px' color='#81e6d9'>Nominafy</Text>
                 <NominationList />

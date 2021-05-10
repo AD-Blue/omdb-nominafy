@@ -7,9 +7,6 @@ import MovieListing from './MovieListing';
 
 export default function MovieList({ url }) {
     const movies = useAxiosGet(url)
-    console.log(url)
-    console.log(movies)
-
     let content = null
 
     if(movies.data.Response === 'True' && movies.loading === false) {
