@@ -8,11 +8,11 @@ export default function Nav() {
     return (
         <Flex w='100%' h='50px' bg='brand.200' align='center' justify='space-between' pl='3%' pr='3%' position='fixed' zIndex='3'>
             <Flex align='center'>
-                <Text mr='20px' color='#81e6d9'>Nominafy</Text>
+                <Text mr='20px' color='brand.400'>NOMINAFY</Text>
                 <NominationList />
             </Flex>
 
-            <Button colorScheme='teal' variant='outline' onClick={toggleColorMode} size='s' p='8px'>{colorMode === 'dark' ? 'Light Mode' : 'Dark Mode'}</Button>
+            <Button colorScheme='orange' variant='outline' onClick={toggleColorMode} size='s' p='8px'>{colorMode === 'dark' ? 'Light Mode' : 'Dark Mode'}</Button>
         </Flex>
     )
 }

@@ -40,10 +40,15 @@ function App() {
             setContent(
                 <MovieList url={url} />
             )
-        }
-
-        
+        }        
     }
+
+    const handleKeypress = e => {
+        //it triggers by pressing the enter key
+      if (e.keyCode === 13) {
+        handleSubmit();
+      }
+    };
 
     return (
         <Flex direction='column'>
@@ -52,10 +57,10 @@ function App() {
                 <Banner />
             )}
 
-            <Heading as='h1' textAlign='center' mt='3%' fontSize='68px' color='#fbd38d'>The <br />Shoppies</Heading>
+            <Heading as='h1' textAlign='center' mt='100px' fontSize='68px' color='#fbd38d'>The <br />Shoppies</Heading>
             <Text textAlign='center' mt='40px'>Nominate Your Favorite Movies</Text>
 
-            <Input placeholder="Search by full movie title or IMDb ID" w='80%' ml='auto' mr='auto' mt='5%' p='1%' onChange={handleSearch} />
+            <Input placeholder="Search by full movie title or IMDb ID" w='80%' ml='auto' mr='auto' mt='5%' p='1%' onChange={handleSearch} onKeyPress={handleKeypress} />
             <Button onClick={handleSubmit} mt='3%' mr='auto' ml='auto' colorScheme='orange' variant='outline'>Search</Button>
 
             {content}

@@ -34,7 +34,7 @@ export default function NominationList() {
     return (
         <>
             <Tooltip hasArrow label={label}>
-                <Button size='xs' ref={btnRef} colorScheme="teal" onClick={onOpen} variant='outline' p='8px'>{nominees.length}</Button>
+                <Button size='xs' ref={btnRef} colorScheme="orange" onClick={onOpen} variant='outline' p='8px'>{nominees.length}</Button>
             </Tooltip>
             
             <Drawer
@@ -64,7 +64,7 @@ export default function NominationList() {
                 </DrawerBody>
 
                 <DrawerFooter>
-                    <Button colorScheme="blue" onClick={handleClear}>Clear All</Button>
+                    <Button colorScheme="orange" onClick={handleClear}>Clear All</Button>
                 </DrawerFooter>
                 </DrawerContent>
             </Drawer>
