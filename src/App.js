@@ -4,19 +4,24 @@ import MovieCard from './Components/MovieCard';
 import React, { useState, useEffect } from 'react';
 import Nav from './Components/Nav';
 import Banner from './Components/Banner';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFromLocal } from './Redux/nominateSlice';
+
 import MovieList from './Components/MovieList';
 
 function App() {
     const [content, setContent] = useState(null)
     const [search, setSearch] = useState("");
     const textColor = useColorModeValue("brand.500", "brand.300")
+    const dispatch = useDispatch();
 
     let nominees = useSelector((state) => state.nominate.nominees);
 
     let url = "https://www.omdbapi.com/?apikey=16ee612e&";
 
-    let banner = null
+    useEffect(() => {
+        dispatch(getFromLocal())
+    }, [])
 
     /* useEffect(() => {
         if (nominees.length === 5) {

@@ -15,6 +15,8 @@ export const nominateSlice = createSlice({
                 imdbID: action.payload.imdbID
             }
             state.nominees.push(newMovie)
+
+            localStorage.setItem('nominafy-nominees', JSON.stringify(state.nominees));
         },
         denominate: (state, action) => {
             /* let newMovie = {
@@ -42,10 +44,13 @@ export const nominateSlice = createSlice({
         },
         setNominateFalse: (state) => {
             state.nominateEnabled = false;
+        },
+        getFromLocal: (state) => {
+            state.nominees = JSON.parse(localStorage.getItem('nominafy-nominees'));
         }
     }
 })
 
-export const { nominate, denominate, clear, setNominateTrue, setNominateFalse } = nominateSlice.actions
+export const { nominate, denominate, clear, setNominateTrue, setNominateFalse, getFromLocal } = nominateSlice.actions
 
 export default nominateSlice.reducer
