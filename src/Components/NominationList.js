@@ -50,7 +50,7 @@ export default function NominationList() {
 
                 <DrawerBody>
                     {nominees.slice().map((nominee) => (
-                        <Flex direction='row' justify='space-between' align='center' mb='1%'>
+                        <Flex direction='row' justify='space-between' align='center' mb='18px'>
                             <Text>{nominee.Title} - ({nominee.Year})</Text>
                             <IconButton 
                                 size='xs' aria-label="Remove nomination" 

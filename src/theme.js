@@ -11,8 +11,9 @@ const theme = extendTheme({
         brand: {
             100: '#1a2639', //reference bg color, might not use
             200: '#3e4a61',
-            300: '#c24d2c', //navbar color
-            400: '#d9dad7' //text color, might add later
+            300: '#fbd38d', //dark mode orange
+            400: '#d9dad7', //text color, might add later
+            500: '#c05621', //light mode orange
         }
     }
 })

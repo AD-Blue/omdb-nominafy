@@ -1,4 +1,4 @@
-import { Flex, Input, Button, Heading, Text } from '@chakra-ui/react';
+import { Flex, Input, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import './App.css';
 import MovieCard from './Components/MovieCard';
 import React, { useState, useEffect } from 'react';
@@ -10,6 +10,7 @@ import MovieList from './Components/MovieList';
 function App() {
     const [content, setContent] = useState(null)
     const [search, setSearch] = useState("");
+    const textColor = useColorModeValue("brand.500", "brand.300")
 
     let nominees = useSelector((state) => state.nominate.nominees);
 
@@ -52,12 +53,12 @@ function App() {
                 <Banner />
             )}
 
-            <Heading as='h1' textAlign='center' mt='100px' fontSize={['54px', '68px']} color='#fbd38d'>The <br />Shoppies</Heading>
+            <Heading as='h1' textAlign='center' mt='120px' fontSize={['54px', '68px']} color={textColor}>The <br />Shoppies</Heading>
             <Text textAlign='center' mt='40px' fontSize='24px'>Nominate Your Favorite Movies</Text>
 
             <form onSubmit={handleSubmit}>
                 <Flex direction='column'>
-                    <Input placeholder="Search by full movie title or IMDb ID" w='80%' ml='auto' mr='auto' mt='5%' p='1%' onChange={handleSearch} />
+                    <Input placeholder="Search by full movie title or IMDb ID" w='80%' ml='auto' mr='auto' mt='5%' p='1%' variant='filled' onChange={handleSearch} />
                     <Button onClick={handleSubmit} mt='3%' mr='auto' ml='auto' colorScheme='orange' variant='outline'>Search</Button>
                 </Flex>
             </form>
