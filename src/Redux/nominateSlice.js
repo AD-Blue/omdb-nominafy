@@ -46,6 +46,7 @@ export const nominateSlice = createSlice({
             state.nominateEnabled = false;
         },
         getFromLocal: (state) => {
+            if(localStorage.getItem('nominafy-nominees'))
             state.nominees = JSON.parse(localStorage.getItem('nominafy-nominees'));
         }
     }
